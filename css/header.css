@@ -1,24 +1,53 @@
 @font-face{
     font-family: agency;
-    src:url(fonts/agency.ttf) format('truetype');
+    src:url(/fonts/agency.ttf) format('truetype');
+}
+@font-face{
+    font-family: nevis;
+    src:url(/fonts/nevis.ttf) format('truetype');
+}
+body{
+    padding:0px;
+    margin:0px;
 }
 .header{
-    height:128px;
+    height:150px;
+    background-color:#16a085;
 }
 h1{
+    position:absolute;
+    top:10px;
+    width:100%;
     text-align:center;
-    font-size:2em;
+    color:#fff;
+    font-family:sans-serif;
+    font-family:nevis;
+    font-size:72px;
+    margin:0px;
 }
 .navbar{
+    position:relative;
+    height:50px;
     width:100%;
     padding:0px;
+    background-color:#1abc9c;
+    top:calc(100% - 50px);
 }
 .navli{
+    height:100%;
     margin:0px;
     float:left;
     text-align: center;
-    width:33%;
+    width:33.333%;
+    vertical-align:middle;
+    height:100%;
 }
 .navbtn{
-    
+    position:relative;
+    top:4px;
+    color:#111;
+    font-family:sans-serif;
+    font-family: nevis;
+    font-size: 36px;
+    text-decoration:none;
 }
