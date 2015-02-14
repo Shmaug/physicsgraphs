@@ -1,0 +1,24 @@
+@font-face{
+    font-family: agency;
+    src:url(fonts/agency.ttf) format('truetype');
+}
+.header{
+    height:128px;
+}
+h1{
+    text-align:center;
+    font-size:2em;
+}
+.navbar{
+    width:100%;
+    padding:0px;
+}
+.navli{
+    margin:0px;
+    float:left;
+    text-align: center;
+    width:33%;
+}
+.navbtn{
+    
+}
