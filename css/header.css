@@ -20,6 +20,7 @@ h1{
     width:100%;
     text-align:center;
     color:#fff;
+    font-family:sans-serif;
     font-family:nevis;
     font-size:72px;
     margin:0px;
@@ -45,6 +46,7 @@ h1{
     position:relative;
     top:4px;
     color:#111;
+    font-family:sans-serif;
     font-family: nevis;
     font-size: 36px;
     text-decoration:none;
