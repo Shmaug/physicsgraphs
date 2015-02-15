@@ -52,7 +52,7 @@ body{
 }
 .info_block{
     margin-bottom:20px;
-    /*height:36px;*/
+    height:36px;
     padding:10px;
     overflow:hidden;
 }
@@ -97,4 +97,7 @@ hr{
     font-size:12px;
     text-align:center;
     margin:0px;
+}
+canvas{
+    cursor:crosshair;
 }
