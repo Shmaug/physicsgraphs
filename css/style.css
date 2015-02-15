@@ -1,4 +1,5 @@
 body{
+    position:relative;
     background-color:#34495e;
     z-index: -10;
 }
