@@ -52,6 +52,7 @@ h1{
     width:33.333%;
     vertical-align:middle;
     height:100%;
+    list-style-type:none;
 }
 .navbtn{
     position:relative;

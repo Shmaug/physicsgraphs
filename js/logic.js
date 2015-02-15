@@ -8,4 +8,11 @@ $(document).ready(function(){
             $(this).parent().parent().animate({height:h+"px"},500);
         });
     });
+    $(".container").each(function(i){
+        var c = document.createElement("canvas");
+        c.width=$(this).width();
+        c.height=$(this).height();
+        this.appendChild(c);
+        $(this).attr("data-ready","yes");
+    });
 });

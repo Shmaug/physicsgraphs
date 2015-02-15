@@ -52,7 +52,8 @@ body{
 }
 .info_block{
     margin-bottom:20px;
-    height:36px;
+    /*height:36px;*/
+    padding:10px;
     overflow:hidden;
 }
 h2{
@@ -69,4 +70,31 @@ hr{
     border-top: 1px solid #34495e;
     margin: 1em 0;
     padding: 0;
+}
+.container{
+    position: relative;
+    margin-top:10px;
+    width:calc100%;
+    height:256px;
+    border:1px solid #000;
+}
+.readout{
+    position:absolute;
+    font-size: .7em;
+    transform:translateY(-120%);
+    right:0px;
+    margin-top: 0px;
+}
+.bar{
+    position: absolute;
+    right:10px;
+    top:10px;
+    width:100px;
+    height:1px;
+    background-color: #000;
+}
+.blbl{
+    font-size:12px;
+    text-align:center;
+    margin:0px;
 }
