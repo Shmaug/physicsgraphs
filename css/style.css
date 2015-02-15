@@ -60,7 +60,7 @@ h2{
     cursor:pointer;
 }
 h2:hover{
-    color:#ccc;
+    text-decoration:underline;
 }
 hr{
     display: block;
