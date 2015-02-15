@@ -1,12 +1,64 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <div id="header"></div>
     
-    <div id="content">
+        <div class="content">
+            
+            <p>
+            Energy is the abilty to do work and is classified into two categories, Kinetiec Energy (KE) and Potential Energy (PE). 
+            </p>
     
-    </div>
-    
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Kinectic Energy</h2>
+                    <p>
+                    Kinetic energy (KE) is the the energy of motion thus, if an object is moving it has kinetic energy.
+                    </p>
+                    <img class="equation" src="img/kinetic_energy_equation.png">
+                </div>
+            </div>
+            <hr>
+            
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Potential Energy</h2>
+                    <p>
+                    Potential energy (PE) measures the energy that an object is capable of possesing. In the most baisc case, as an object is lifted higher its potential energy increases.
+                    </p>
+                    <img class="equation" src="img/potential_energy_equation.png">
+                </div>
+            </div>
+            <hr>
+            
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Work</h2>
+                    <p>
+                    Work is needed whenever an object is in motion and so it can be deuced that anything that is moving has work. This is seen in the equation which requires a force (F), dispacement (d), and cosθ which is the angle between the force and the object.
+                     </p>
+                    <img class="equation" src="img/work_equation.png">
+                </div>
+            </div>
+            <hr>
+            
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Mechanical Energy</h2>
+                    <p>
+                    Mechanical energy states that in a system the sum of the kinetic energy and potential energy will always be the the same value in perfect enviroment. Meaning if a ball is at the top of a ramp and not moving it will  have max potential energy thus having no kinectic energy. The opposite is also true for kinetic energy allowing for an easy way to backsolve for KE and PE.
+                    </p>
+                    <img class="equation" src="img/mechanical_energy_equation.png">
+                </div>
+            </div>
+
     <script>$("#header").load("header.html");</script>
+    <script src="js/logic.js"></script>
+    <style>
+        .ebtn{
+            text-decoration: underline;
+        }
+    </style>
 </html>
