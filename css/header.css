@@ -1,6 +1,7 @@
-@font-face{
-    font-family: "nevis";
-    src: url("/fonts/nevis.ttf") format('truetype');
+@font-face
+{
+	font-family:"nevis";
+	src:url("nevis.ttf") format("truetype");
 }
 body{
     padding:0px;
