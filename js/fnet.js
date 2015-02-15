@@ -58,7 +58,7 @@ $(document).ready(function(){
     b.image.src="/img/dank.png";
     b.image.onload=function(){ b.realrad=b.image.width/2; b.radius=b.image.width/pixPerMeter * .5; };
     
-    canvas.addEventListener('mousemove', function(evt) {
+    cfnet.addEventListener('mousemove', function(evt) {
     mousePos = getMousePos(cfnet, evt);
     }, false);
     
