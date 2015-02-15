@@ -2,6 +2,7 @@ body{
     background-color:#27ae60;
 }
 .content{
+    min-width: 600px;
     width:75%;
     margin-left: auto;
     margin-right: auto;
@@ -18,17 +19,20 @@ body{
     text-align: center;
 }
 .xkcdcomic{
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 .cred{
     text-align: center;
-    margin:0px;
-    font-size:.75em;
+    bottom:21px;
+    margin: 0 auto; left: 0; right: 0;
+    font-size:.6em;
+    position:absolute;
 }
 .inc{
     position:absolute;
-    width:100%;
-    margin-top:calc(100% - 400px);
+    bottom:5px;
+    margin: 0 auto; left: 0; right: 0;
     text-align: center;
     font-size:.6em;
 }
