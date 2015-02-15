@@ -1,5 +1,6 @@
 body{
     background-color:#34495e;
+    z-index: -10;
 }
 .content{
     z-index: -2;
@@ -47,4 +48,24 @@ body{
 .equation{
     position: relative;
     margin: 0 auto;
+}
+.info_block{
+    margin-bottom:20px;
+    height:36px;
+    overflow:hidden;
+}
+h2{
+    margin:0px;
+    cursor:pointer;
+}
+h2:hover{
+    color:#ccc;
+}
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #34495e;
+    margin: 1em 0;
+    padding: 0;
 }
