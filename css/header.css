@@ -25,6 +25,10 @@ h1{
     font-size:72px;
     margin:0px;
 }
+.hbtn{
+    text-decoration:none;
+    color:#fff;
+}
 .navbar{
     position:relative;
     height:50px;
