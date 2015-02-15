@@ -1,12 +1,54 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <div id="header"></div>
     
-    <div id="content">
+        <div class="content">
+            
+            <p>
+            Rotation in physics is used to used to analyze systems that involve revolving objects. This can be used to predict a distacne traveled given a diameter and linear velocity or how long it will take to lift a given weight
+            </p>
     
-    </div>
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Angular Velocity</h2>
+                    <p>
+                    Angular velocity is used to determine the speed of rotation of and object and is represented with omega (ω). The equation below takes into account initial angular velocity (ω<sub>i</sub>), angular acceleration (α), and time (t).
+                    </p>
+                    <img class="equation" src="img/angular_velocity_equation.png">
+                </div>
+            </div>
+            <hr>
+            
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Torque</h2>
+                    <p>
+                    Torque or moment of force is the resistance to motion when rotaing around a central axis or fulcrum. When observing torque in a system you can use the "right hand" rule by using your right hand to rotate the object your are observing and whatever direction your thumb is pointing is the location of torque. This equation uses the dispacement from the fulcrum or radius (r), the force being applied (F), and the anglge between the lever arm and the vector (sinθ).
+                    </p>
+                    <img class="equation" src="img/torqe_equation.png">
+                </div>
+            </div>
+            <hr>
+            
+            <div class="info_block">
+                <div id="info">
+                    <h2 id="subtitle">Angular Acceleration</h2>
+                    <p>
+                    Angular acceleration is the rate to which you velocity of rotaion changes of a given amount of time. Through an adaptaion of Newton's Second Law the equation for angual acceleration can be derived.
+                    </p>
+                    <img class="equation" src="img/angular_acceleration_equation.png">
+                </div>
+            </div>
+            <hr>
 
     <script>$("#header").load("header.html");</script>
+    <script src="js/logic.js"></script>
+    <style>
+        .rbtn{
+            text-decoration: underline;
+        }
+    </style>
 </html>
