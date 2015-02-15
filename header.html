@@ -4,12 +4,72 @@
     <link rel="physics_icon" href="img/physics_icon.ico">
 </head>
 <div class="header" id="header">
-    <h1><a class="hbtn" href="index.html">Physics Graphs</a></h1>
+    <h1><a class="hbtn" href="#">Physics Graphs</a></h1>
     <div class="navdiv">
         <ul class="navbar">
-            <li class="navli"><a class="navbtn kbtn"href="kinematics.html">kinematics</a></li>
-            <li class="navli"><a class="navbtn rbtn"href="rotation.html">rotation</a></li>
-            <li class="navli"><a class="navbtn ebtn"href="energy.html">energy</a></li>
+            <li class="navli"><a class="navbtn kbtn"href="#kinematics">kinematics</a></li>
+            <li class="navli"><a class="navbtn rbtn"href="#rotation">rotation</a></li>
+            <li class="navli"><a class="navbtn ebtn"href="#energy">energy</a></li>
         </ul> 
     </div>
 </div>
+<script>
+window.busy=false;
+$(".content").load("in.html");
+$(".hbtn").click(function(){
+    if (window.busy){
+        return;
+    }
+    window.busy=true;
+    var val=$(".content").css("margin-top");
+    $(".kbtn").css("text-decoration","none");
+    $(".rbtn").css("text-decoration","none");
+    $(".ebtn").css("text-decoration","none");
+    $(".content").animate({"margin-top":"-100%"},750,"",function(){
+        $(".content").load("in.html");
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadLogic(false);});
+    });
+});
+$(".kbtn").click(function(){
+    if (window.busy){
+        return;
+    }
+    window.busy=true;
+    var val=$(".content").css("margin-top");
+    $(this).css("text-decoration","underline");
+    $(".rbtn").css("text-decoration","none");
+    $(".ebtn").css("text-decoration","none");
+    $(".content").animate({"margin-top":"-100%"},750,"",function(){
+        $(".content").load("kinematics.html");
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadCanvas(); window.loadLogic(false);});
+    });
+});
+$(".rbtn").click(function(){
+    if (window.busy){
+        return;
+    }
+    window.busy=true;
+    var val=$(".content").css("margin-top");
+    $(this).css("text-decoration","underline");
+    $(".kbtn").css("text-decoration","none");
+    $(".ebtn").css("text-decoration","none");
+    $(".content").animate({"margin-top":"-100%"},750,"",function(){
+        $(".content").load("rotation.html");
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadLogic(false);});
+    });
+});
+$(".ebtn").click(function(){
+    if (window.busy){
+        return;
+    }
+    window.busy=true;
+    var val=$(".content").css("margin-top");
+    $(this).css("text-decoration","underline");
+    $(".kbtn").css("text-decoration","none");
+    $(".rbtn").css("text-decoration","none");
+    $(".content").animate({"margin-top":"-100%"},750,"",function(){
+        $(".content").load("energy.html");
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadLogic(false);});
+    });
+});
+</script>

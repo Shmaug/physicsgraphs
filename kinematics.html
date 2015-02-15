@@ -1,71 +1,53 @@
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    </head>
-    <div id="header"></div>
-    
-        <div id="content" class="content">
-            <p>
-            Kinematics is the study of motion and how different forces act on objects. This is seen in anything from projectiles, to objects being pushed or pulled.
-            </p>
-            
-            <div class="container" id="cfnet" data-ready="no">
-                <div class="bar"><p class="blbl">1m</p></div>
-                <p id="readout" class="readout">pos: (0,0) vel(0,0)  25px=1m</p>
-            </div>
-    
-            <div class="info_block">
-                <div id="info">
-                    <h2 id="subtitle">Force Net</h2>
-                    <p>
-                    Force net(F<sub>net</sub>) is the compilation of all of the forces in system
-                    </p>
-                    <img class="equation" src="img/fnet_equation.png">
-                </div>
-            </div>
-            <hr>
-            <div class="info_block">
-                <div id="info">
-                    <h2 id="subtitle">Velocity & Displacement</h2>
-                    <p>
-                    This equation is for finding the velocity of a system. In which ΔP is displacement of the direct distance from one point to another and Δt is the change in time or time taken to reach the end position.
-                    </p>
-                    <img class="equation" src="img/velocity_equation.png">
-                </div>
-            </div>
-            <hr>
-            <div class="info_block">
-                <div id="info">
-                    <h2 id="subtitle">Acceleration</h2>
-                    <p>
-                    Acceleration is the rate at which your velocity changes over a given amount of time.
-                    </p>
-                    <img class="equation" src="img/acceleration_eqaution.png">
-                </div>
-            </div>
-            <hr>
-            <div class="info_block">
-                <div id="info">
-                    <h2 id="subtitle">Projectile</h2>
-                    <p>
-                    This equation takes into factor the the starting distance (x<sub>i</sub>), final distance(x<sub>f</sub>), inital velocity (v<sub>i</sub>), time (t), and acceleration (a). The projectile equation is especially useful becasue it allows you find things such as the place an object will land or the time it took for an object to land at a given point. Furthermore, this can be used for either the x or the y axis.
-                    </p>
-                    <img class="equation" src="img/projectile_equaiton.png">
-                    <p>
-                    An alternate equation to use with projectiles is given below when you are not given time. To use this equation you need the intial velocity (V<sub>i</sub>), acceleration (a), and displacement (d) which may also by (x<sub>f</sub>-x<sub>i</sub>)
-                    </p>
-                    <img class="equation" src="img/alt_projectile_equation.png">
-                </div>
-            </div>
-        </div>
-    
-    <script>$("#header").load("header.html");</script>
-    <script src="js/logic.js"></script>
-    <script src="js/fnet.js"></script>
-    <style>
-        .kbtn{
-            text-decoration: underline;
-        }
-    </style>
-</html>
+<p>
+Kinematics is the study of motion and how different forces act on objects. This is seen in anything from projectiles, to objects being pushed or pulled.
+</p>
+
+<div class="container" id="cfnet" data-ready="no">
+    <div class="bar"><p class="blbl">1m</p></div>
+    <p id="readout" class="readout">pos: (0,0) vel(0,0)  25px=1m</p>
+</div>
+
+<div class="info_block">
+    <div id="info">
+        <h2 id="subtitle">Force Net</h2>
+        <p>
+        Force net(F<sub>net</sub>) is the compilation of all of the forces in system
+        </p>
+        <img class="equation" src="img/fnet_equation.png">
+    </div>
+</div>
+<hr>
+<div class="info_block">
+    <div id="info">
+        <h2 id="subtitle">Velocity & Displacement</h2>
+        <p>
+        This equation is for finding the velocity of a system. In which ΔP is displacement of the direct distance from one point to another and Δt is the change in time or time taken to reach the end position.
+        </p>
+        <img class="equation" src="img/velocity_equation.png">
+    </div>
+</div>
+<hr>
+<div class="info_block">
+    <div id="info">
+        <h2 id="subtitle">Acceleration</h2>
+        <p>
+        Acceleration is the rate at which your velocity changes over a given amount of time.
+        </p>
+        <img class="equation" src="img/acceleration_eqaution.png">
+    </div>
+</div>
+<hr>
+<div class="info_block">
+    <div id="info">
+        <h2 id="subtitle">Projectile</h2>
+        <p>
+        This equation takes into factor the the starting distance (x<sub>i</sub>), final distance(x<sub>f</sub>), inital velocity (v<sub>i</sub>), time (t), and acceleration (a). The projectile equation is especially useful becasue it allows you find things such as the place an object will land or the time it took for an object to land at a given point. Furthermore, this can be used for either the x or the y axis.
+        </p>
+        <img class="equation" src="img/projectile_equaiton.png">
+        <p>
+        An alternate equation to use with projectiles is given below when you are not given time. To use this equation you need the intial velocity (V<sub>i</sub>), acceleration (a), and displacement (d) which may also by (x<sub>f</sub>-x<sub>i</sub>)
+        </p>
+        <img class="equation" src="img/alt_projectile_equation.png">
+    </div>
+</div>
+<script src="js/fnet.js"></script>
