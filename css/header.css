@@ -7,8 +7,10 @@ body{
     margin:0px;
 }
 .header{
-    height:150px;
+    z-index: 1;
+    height:100px;
     background-color:#16a085;
+    box-shadow: 0px 0px 10px #000;
 }
 h1{
     position:absolute;
@@ -25,13 +27,21 @@ h1{
     text-decoration:none;
     color:#fff;
 }
-.navbar{
+.navdiv{
+    z-index: -1;
     position:relative;
     height:50px;
     width:100%;
     padding:0px;
     background-color:#1abc9c;
-    top:calc(100% - 50px);
+    top:100%;
+    box-shadow: 0px 0px 10px #000;
+}
+.navbar{
+    height:100%;
+    width:100%;
+    max-width: 1000px;
+    margin:auto;
 }
 .navli{
     height:100%;
