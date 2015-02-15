@@ -15,4 +15,7 @@ $(document).ready(function(){
         this.appendChild(c);
         $(this).attr("data-ready","yes");
     });
+    var val2=$(".content").css("margin-top");
+    $(".content").css("margin-top", "-100%");
+    $(".content").animate({"margin-top":val2},1500);
 });

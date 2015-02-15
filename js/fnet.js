@@ -55,7 +55,7 @@ $(document).ready(function(){
     var cfnet = jcfnet[0];
     var fnetctx = cfnet.getContext("2d");
     var b=new ball(10);
-    b.image.src="/img/dank.png";
+    b.image.src="img/dank.png";
     b.image.onload=function(){ b.realrad=b.image.width/2; b.radius=b.image.width/pixPerMeter * .5; };
     
     jcfnet.on('mousemove', function(e) {
