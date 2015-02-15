@@ -44,3 +44,7 @@ body{
     font-size:.6em;
     font-weight: bolder;
 }
+.equation{
+    position: relative;
+    margin: 0 auto;
+}
