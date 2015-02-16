@@ -1,4 +1,4 @@
-window.loadKCanvas=function(){
+window.loadECanvas=function(){
     var pixPerMeter=15;
     var mouseDown=false;
     var mousePos={x:0,y:0};
@@ -38,9 +38,14 @@ window.loadKCanvas=function(){
         var sz=c.measureText(txt);
         c.fillText(txt, x+Math.cos(a)*d - sz.width/2, y+Math.sin(a)*d + 12);
     }
+    function getHeight(x){
+        alert("getting height");
+        
+        return Math.cos(x)*2;
+    }
     $(document).ready(function(){
         $(".bar").css("width",pixPerMeter+"px");
-        var fnetcontainer=$("#cfnet");
+        var fnetcontainer=$("#cenergy");
         
         var cfnet = document.createElement("canvas");
         cfnet.width=$(".container").width();
@@ -70,9 +75,9 @@ window.loadKCanvas=function(){
             b.ay=0;
             b.forces=[];
             b.forces.push(["#f00","Fg",0,b.mass*-9.8]);
-            if (b.y < b.radius){
+            if (b.y < getHeight(b.x)+b.radius){
                 b.forces.push(["#00f","Fn",0,b.mass*9.8]);
-                b.y=b.radius;
+                b.y=getHeight(b.x)+b.radius;
                 b.vy=Math.max(0,b.vy);
                 if (Math.abs(b.vx) < .1){
                     b.vx=0;
@@ -167,13 +172,6 @@ window.loadKCanvas=function(){
         this.readrad=0;
         this.forces=[];
     };
-    function waitForYes(elem){
-        if(elem.attr("data-ready")=="no"){
-            setTimeout(function(){
-                waitForYes(elem);
-            },250);
-        }
-    }
     function drawArrow(c,x,y,a,d,col,txt){
         var cx=x,cy=y;
         c.beginPath();
@@ -244,6 +242,18 @@ window.loadKCanvas=function(){
                 var fy=Math.sin(fa)*b.mass*d;
                 b.forces.push(["#0f0","Fapp",fx,fy]);
             }
+            fnetctx.beginPath();
+            fnetctx.strokeStyle=#000;
+            fnetctx.lineWidth=2;
+            // draw ground
+            alert("drawing ground");
+            for (var x=-fnetctx.width/2;x<fnetctx.width/2;x+=32){
+                if (x==-fnetctx.width/2){
+                    fnetctx.moveTo((x,getHeight(x/pixPerMeter)*pixPerMeter));
+                }else{
+                fnetctx.lineTo(x,getHeight(x/pixPerMeter)*pixPerMeter);}
+            }
+            fnetctx.stroke();
             // draw ball
             fnetctx.clearRect (0, 0, cfnet.width, cfnet.height);
             fnetctx.drawImage(b.image,b.realx - b.radius*pixPerMeter,b.realy - b.radius*pixPerMeter);

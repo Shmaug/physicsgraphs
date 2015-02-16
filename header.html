@@ -41,7 +41,7 @@ $(".kbtn").click(function(){
     $(".ebtn").css("text-decoration","none");
     $(".content").animate({"margin-top":"-100%"},750,"",function(){
         $(".content").load("kinematics.html");
-        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadCanvas(); window.loadLogic(false);});
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadKCanvas(); window.loadLogic(false);});
     });
 });
 $(".rbtn").click(function(){
@@ -69,7 +69,7 @@ $(".ebtn").click(function(){
     $(".rbtn").css("text-decoration","none");
     $(".content").animate({"margin-top":"-100%"},750,"",function(){
         $(".content").load("energy.html");
-        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadLogic(false);});
+        $(".content").animate({"margin-top":val},750,"",function(){window.busy=false; window.loadECanvas(); window.loadLogic(false);});
     });
 });
 </script>
