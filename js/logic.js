@@ -90,10 +90,10 @@ $(window).load(function(){
         $(this).css("text-decoration","underline");
         $(".kbtn").css("text-decoration","none");
         $(".rbtn").css("text-decoration","none");
-        $(".header").animate({backgroundColor:"#c0392b"},1500);
-        $(".navdiv").animate({backgroundColor:"#e74c3c"},1500);
+        $(".header").animate({backgroundColor:"#27ae60"},1500);
+        $(".navdiv").animate({backgroundColor:"#2ecc71"},1500);
         $(".content").animate({"margin-top":"-100%"},750,"",function(){
-            $(".content").css("background-color","#e74c3c");
+            $(".content").css("background-color","#2ecc71");
             $(".content").load("energy.html");
             $(".content").animate({"margin-top":val},750,"",function(){busy=false;});
         });
