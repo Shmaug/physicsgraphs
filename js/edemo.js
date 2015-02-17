@@ -1,23 +1,23 @@
-function loadKDemo(){
+function loadEDemo(){
     $(document).ready(function(){
         $(".bar").css("width",pixPerMeter+"px");
-        var fnetcontainer=$("#cfnet");
+        var econtainer=$("#cenergy");
         
         var canvas = document.createElement("canvas");
         canvas.width=$(".container").width();
         canvas.height=$(".container").height();
         $(".container")[0].appendChild(canvas);
         
-        var readout = fnetcontainer.children("#readout");
+        var readout = econtainer.children("#readout");
         var context = canvas.getContext("2d");
         
         var b=new ball(10,"img/dank.png");
         
         // set up input
-        initCanvas(fnetcontainer.children("canvas"));
+        initCanvas(econtainer.children("canvas"));
 
         function update(time){
-            b.setForces(0,1,.8);
+            b.setForces(-.2, 3);
             
             // apply Fapp toward mouse if clicking
             if (mouseDown){
@@ -34,21 +34,15 @@ function loadKDemo(){
             // draw ball
             context.clearRect(0,0,canvas.width,canvas.height);
             b.draw(canvas,context);
-            // draw ground
-            drawLine(context,-toWorldX(canvas.width),1,toWorldX(canvas.width),1,"#000");
         }
-        curCanvas=canvas;
-        running=true;
+
         function main(){
             var now = Date.now();
             var delta = now - then;
             update(delta/1000);
             draw();
             then = now;
-            
-            if (running){
-                requestAnimationFrame(main);
-            }
+            requestAnimationFrame(main);
         }
 
         requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame;

@@ -1,24 +1,23 @@
-$(".content").load("in.html");
-var curColor=0;
-
-function waitForElement(e){
-    if (document.getElementById(e)){
-        return;
-    }else{
-        setTimeout(function(){waitForElement(e);},250);
-    }
+if (window.location.hash=="#kinematics"){
+    $(".content").load("kinematics.html");
+        setTimeout(function(){loadKDemo();},750);
+}else if(window.location.hash=="#rotation"){
+    $(".content").load("rotation.html");
+}else if(window.location.hash=="#energy"){
+    $(".content").load("energy.html");
+        setTimeout(function(){loadEDemo();},750);
+}else{
+    $(".content").load("in.html");
 }
 
 $(window).load(function(){
     // subtitles should show/hide on click
-    $("h2").each(function(i){
-        $(this).click(function(){
-            var h=36;
-            if ($(this).parent().parent().height() <= 36){
-                h=$(this).parent().height();
-            }
-            $(this).parent().parent().animate({height:h+"px"},500);
-        });
+    $(document).on("click","h2",function(i){
+        var h=36;
+        if ($(this).parent().parent().height() <= 36){
+            h=$(this).parent().height();
+        }
+        $(this).parent().parent().animate({height:h+"px"},500);
     });
     var busy=true;
     // slide down first div
@@ -31,6 +30,7 @@ $(window).load(function(){
         if (busy){
             return;
         }
+        running=false;
         busy=true;
         var val=$(".content").css("margin-top");
         $(".kbtn").css("text-decoration","none");
@@ -50,6 +50,7 @@ $(window).load(function(){
             return;
         }
         busy=true;
+        running=false;
         var val=$(".content").css("margin-top");
         $(this).css("text-decoration","underline");
         $(".rbtn").css("text-decoration","none");
@@ -68,6 +69,7 @@ $(window).load(function(){
             return;
         }
         busy=true;
+        running=false;
         var val=$(".content").css("margin-top");
         $(this).css("text-decoration","underline");
         $(".kbtn").css("text-decoration","none");
@@ -86,6 +88,7 @@ $(window).load(function(){
             return;
         }
         busy=true;
+        running=false;
         var val=$(".content").css("margin-top");
         $(this).css("text-decoration","underline");
         $(".kbtn").css("text-decoration","none");
@@ -95,7 +98,7 @@ $(window).load(function(){
         $(".content").animate({"margin-top":"-100%"},750,"",function(){
             $(".content").css("background-color","#2ecc71");
             $(".content").load("energy.html");
-            $(".content").animate({"margin-top":val},750,"",function(){busy=false;});
+            $(".content").animate({"margin-top":val},750,"",function(){busy=false; loadEDemo();});
         });
     });
 });
