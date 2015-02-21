@@ -3,7 +3,8 @@ var mouseDown=false;
 var mousePos={x:0,y:0};
 var mouseWorld={x:0,y:0};
 var running=false;
-var curCanvas=false;
+var curCanvas;
+var curContext;
 
 function dist(a,b){
     var x=a.x-b.x;
@@ -29,7 +30,7 @@ function toScreenY(m){
     return curCanvas.height-toPixels(m);
 }
 function toScreen(m){
-    return {x:toScreenX(m.x),y:toScreenY(m.y)}
+    return {x:toScreenX(m.x),y:toScreenY(m.y)};
 }
 
 function toWorldX(p){
@@ -39,7 +40,7 @@ function toWorldY(p){
     return toMeters(curCanvas.height-p);
 }
 function toWorld(p){
-    return {x:toWorldX(p.x),y:toWorldY(p.y)}
+    return {x:toWorldX(p.x),y:toWorldY(p.y)};
 }
 
 function drawLine(c,x,y,x2,y2,col){
@@ -52,13 +53,13 @@ function drawLine(c,x,y,x2,y2,col){
 }
 
 function drawArrow(c,x,y,a,d,col,txt){
-    cx=x+Math.cos(a)*d
-    cy=y+Math.sin(a)*d;
+    var cx=x+Math.cos(a)*d;
+    var cy=y+Math.sin(a)*d;
     drawLine(c,x,y,cx,cy,col);
     drawLine(c,cx,cy,cx+Math.cos(a-Math.PI*.833)*2,cy+Math.sin(a-Math.PI*.833)*2,col);
     drawLine(c,cx,cy,cx+Math.cos(a+Math.PI*.833)*2,cy+Math.sin(a+Math.PI*.833)*2,col);
     
-    if (txt!=""){
+    if (txt!==""){
         c.fillStyle=col;
         c.font="24px monospace";
         d=d+1;
@@ -80,10 +81,12 @@ function initCanvas(jcanvas){
     jcanvas.on('mouseup', function(e) {
         mouseDown=false;
     });
+    jcanvas.on('mouseout', function(e) {
+        mouseDown=false;
+    });
 }
 
-function ball(m,img){
-    this.image=new Image();
+function ball(m){
     this.p={x:0,y:0};
     this.v={x:0,y:0};
     this.a={x:0,y:0};
@@ -92,71 +95,56 @@ function ball(m,img){
     this.radius=0;
     this.readrad=0;
     this.forces=[];
-    this.image.src=img;
     this.fnet={x:0,y:0};
     this.g=-9.8;
+    this.realrad=toPixels(m/4);
+    this.radius=m/4;
     
-    {
-        var c=this;
-        this.image.onload=function(){
-            c.realrad=c.image.width/2;
-            c.radius=toMeters(c.image.width/2);
-        };
-    }
-    
-    this.setForces=function(groundSlope, groundHeight,groundFriction){
-        this.a.x=0;
-        this.a.y=0;
-        this.forces=[];
-        
-        // force gravity
-        this.forces.push(["#f00","Fg",{x:0,y:this.mass*this.g}]);
-        
+    this.setForces=function(groundSlope, groundHeight, groundFriction){
+        var close={x:this.p.x,y:0};
+        if (groundSlope!=0){
+            close.x=(groundSlope*this.p.x-groundHeight+this.p.y)/(2*groundSlope);
+        }
+        close.y=(groundHeight+groundSlope*this.p.x)/2;
         // apply force normal and force friction on ground
-        if (this.p.y < this.p.x*groundSlope+this.radius+groundHeight){
-            this.forces.push(["#00f","Fn",{x:0,y:this.mass*-this.g}]);
-            // correct vel and pos
-            this.p.y=this.p.x*groundSlope+this.radius+groundHeight-0.01;
-            this.v.y=Math.max(0,this.v.y);
+        var d=dist(close,this.p)-this.radius
+        console.log(close);
+        if (d<0){
             
-            if (Math.abs(this.v.x) < .1){
-                this.v.x=0;
+            // force normal shouldn't lift it off the ground
+            var a=Math.atan(groundSlope);
+            var l=Math.cos(a)*this.mass*-this.g;
+            this.forces.push(["#00f","Fn",{x:l*Math.cos(a+.5*Math.PI),y:l*Math.sin(a+.5*Math.PI)}]);
+            
+            // correct vel and pos
+            this.v={x:0,y:0};
+            
+            if (len(this.v) < .1){
+                this.v={x:0,y:0};
             }
             else{
-                var sgn=1
-                if (this.v.x < 0){sgn=-1;}
-                this.forces.push(["#f0f","Ff",{x:sgn*this.mass*this.g*groundFriction,y:0}]);
+                var l=len(this.v);
+                var d=this.mass*this.g*groundFriction;
+                this.forces.push(["#f0f","Ff",{x:this.v.x/l * d,y:this.v.y/l * d}]);
             }
         }
+        // force gravity
+        this.forces.push(["#f00","Fg",{x:0,y:this.mass*this.g}]);
     }
     
     this.applyForces=function(time, d){
+        this.a.x=0;
+        this.a.y=0;
         // calc forces
-        var f=JSON.parse(JSON.stringify(this.forces));
-        var numforces=this.forces.length;
         this.fnet={x:0,y:0}; // the fnet we draw
-        var rfnet={x:0,y:0}; // the real fnet
-        var cur=f.pop();
         
-        var sgfg=0;
-        while (cur){
-            var vec=cur.pop();
-            var txt=cur.pop();
-            this.fnet.x+=vec.x;
-            this.fnet.y+=vec.y;
-            
-            rfnet.x+=vec.x;
-            rfnet.y+=vec.y;
-            
-            cur=f.pop();
+        for (var i=0;i<this.forces.length;i++){
+            this.fnet.x+=this.forces[i][2].x;
+            this.fnet.y+=this.forces[i][2].y;
         }
-        rfnet.x/=numforces;
-        rfnet.y/=numforces;
-        this.fnet.x/=numforces;
-        this.fnet.y/=numforces;
-        
-        this.a.x=rfnet.x/this.mass;
-        this.a.y=rfnet.y/this.mass;
+        // apply forces
+        this.a.x=this.fnet.x/this.mass;
+        this.a.y=this.fnet.y/this.mass;
         
         // basic physics
         this.v.x+=this.a.x*time;
@@ -169,8 +157,13 @@ function ball(m,img){
     }
     
     this.draw=function(c,ctx){
-        ctx.drawImage(this.image,this.rp.x - this.realrad,this.rp.y - this.realrad);
+        // draw circle
+        ctx.beginPath();
+        ctx.arc(toScreenX(this.p.x),toScreenY(this.p.y),this.realrad,0,2*Math.PI,false);
+        ctx.fillStyle="#000";
+        ctx.fill();
         
+        // draw forces
         var cur=this.forces.pop();
         while (cur){
             var vec=cur.pop();
@@ -182,11 +175,11 @@ function ball(m,img){
         }
         // draw fnet arrow
         if (len(this.fnet)>20){
-            drawArrow(ctx,this.p.x,this.p.y,Math.atan2(-this.fnet.y,this.fnet.x),len(this.fnet)/15,"#ff0","Fnet");
+            drawArrow(ctx,this.p.x,this.p.y,Math.atan2(this.fnet.y,this.fnet.x),len(this.fnet)/15,"#ff0","Fnet");
         }
         // draw vel arrow
         if (len(this.v)>.25){
-            drawArrow(ctx,this.p.x,this.p.y,Math.atan2(-this.v.y,this.v.x),len(this.v),"#fff","vel");
+            drawArrow(ctx,this.p.x,this.p.y,Math.atan2(this.v.y,this.v.x),len(this.v),"#fff","vel");
         }
-    }
+    };
 }

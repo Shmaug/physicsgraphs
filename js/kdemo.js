@@ -11,20 +11,19 @@ function loadKDemo(){
         var readout = fnetcontainer.children("#readout");
         var context = canvas.getContext("2d");
         
-        var b=new ball(10,"img/dank.png");
+        var b=new ball(10);
         
         // set up input
         initCanvas(fnetcontainer.children("canvas"));
-
+        
         function update(time){
-            b.setForces(0,1,.8);
-            
             // apply Fapp toward mouse if clicking
             if (mouseDown){
                 var f={x:(mouseWorld.x-b.p.x)*15,y:(mouseWorld.y-b.p.y)*15};
                 b.forces.push(["#0f0","Fapp",f]);
             }
-        
+            
+            b.setForces(0,1,.8);
             b.applyForces(time, {width:canvas.width,height:canvas.height});
             
             readout[0].innerHTML="Fnet: ("+Math.round(b.fnet.x)+","+Math.round(b.fnet.y)+")  pos:("+Math.round(b.p.x)+","+Math.round(b.p.y)+")  vel:("+Math.round(b.v.x)+","+Math.round(b.v.y)+")  accel:("+Math.round(b.a.x)+","+Math.round(b.a.y)+")   " +pixPerMeter+"px=1m";
@@ -38,6 +37,7 @@ function loadKDemo(){
             drawLine(context,-toWorldX(canvas.width),1,toWorldX(canvas.width),1,"#000");
         }
         curCanvas=canvas;
+        curContext=context;
         running=true;
         function main(){
             var now = Date.now();
