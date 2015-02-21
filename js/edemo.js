@@ -23,7 +23,7 @@ function loadEDemo(){
                 b.forces.push(["#0f0","Fapp",f]);
             }
             
-            b.setForces(-.2, 3,0.8);
+            b.setForces(-.2, 5,0.8);
             
             b.applyForces(time, {width:canvas.width,height:canvas.height});
             
@@ -35,7 +35,7 @@ function loadEDemo(){
             context.clearRect(0,0,canvas.width,canvas.height);
             b.draw(canvas,context);
             // draw ground
-            drawLine(context,-toWorldX(canvas.width),-toWorldX(canvas.width)*-.2+3,toWorldX(canvas.width),toWorldX(canvas.width)*-.2+3,"#000");
+            drawLine(context,-toWorldX(canvas.width),-toWorldX(canvas.width)*-.2+5,toWorldX(canvas.width),toWorldX(canvas.width)*-.2+5,"#000");
         }
         curCanvas=canvas;
         running=true;

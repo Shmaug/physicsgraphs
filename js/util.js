@@ -87,7 +87,7 @@ function initCanvas(jcanvas){
 }
 
 function ball(m){
-    this.p={x:0,y:0};
+    this.p={x:0,y:10};
     this.v={x:0,y:0};
     this.a={x:0,y:0};
     this.rp={x:0,y:0};
@@ -117,7 +117,13 @@ function ball(m){
             this.forces.push(["#00f","Fn",{x:l*Math.cos(a+.5*Math.PI),y:l*Math.sin(a+.5*Math.PI)}]);
             
             // correct vel and pos
+            var cs=Math.cos(a-Math.PI/2);
+            var sn=Math.sin(a-Math.PI/2);
             this.v={x:0,y:0};
+            this.p.x=close.x-this.radius*cs;
+            this.p.y=close.y-this.radius*sn;
+            this.v.x-=this.v.x*cs;
+            this.v.y-=this.v.y*sn;
             
             if (len(this.v) < .1){
                 this.v={x:0,y:0};
