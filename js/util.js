@@ -52,6 +52,13 @@ function drawLine(c,x,y,x2,y2,col){
     c.stroke();
 }
 
+function drawCircle(c,x,y,rad,col){
+    c.beginPath();
+    c.arc(toScreenX(x),toScreenY(y),toPixels(rad),0,2*Math.PI,false);
+    c.fillStyle=col;
+    c.fill();
+}
+
 function drawArrow(c,x,y,a,d,col,txt){
     var cx=x+Math.cos(a)*d;
     var cy=y+Math.sin(a)*d;
@@ -99,16 +106,17 @@ function ball(m){
     this.g=-9.8;
     this.realrad=toPixels(m/4);
     this.radius=m/4;
+    this.close={x:0,y:0};
     
     this.setForces=function(groundSlope, groundHeight, groundFriction){
-        var close={x:this.p.x,y:0};
+        this.close={x:this.p.x,y:0};
         if (groundSlope!=0){
-            close.x=(groundSlope*this.p.x-groundHeight+this.p.y)/(2*groundSlope);
+            this.close.x=(groundSlope*this.p.x-groundHeight+this.p.y)/(2*groundSlope);
         }
-        close.y=(groundHeight+groundSlope*this.p.x)/2;
+        this.close.y=(groundHeight+groundSlope*this.p.x)/2;
         // apply force normal and force friction on ground
-        var d=dist(close,this.p)-this.radius
-        console.log(close);
+        var d=dist(this.close,this.p)-this.radius
+        
         if (d<0){
             
             // force normal shouldn't lift it off the ground
@@ -117,11 +125,11 @@ function ball(m){
             this.forces.push(["#00f","Fn",{x:l*Math.cos(a+.5*Math.PI),y:l*Math.sin(a+.5*Math.PI)}]);
             
             // correct vel and pos
-            var cs=Math.cos(a-Math.PI/2);
-            var sn=Math.sin(a-Math.PI/2);
+            var cs=Math.cos(a+Math.PI/2);
+            var sn=Math.sin(a+Math.PI/2);
             this.v={x:0,y:0};
-            this.p.x=close.x-this.radius*cs;
-            this.p.y=close.y-this.radius*sn;
+            this.p.x=this.close.x-this.radius*cs;
+            this.p.y=this.close.y+this.radius*sn;
             this.v.x-=this.v.x*cs;
             this.v.y-=this.v.y*sn;
             
@@ -163,12 +171,11 @@ function ball(m){
     }
     
     this.draw=function(c,ctx){
-        // draw circle
-        ctx.beginPath();
-        ctx.arc(toScreenX(this.p.x),toScreenY(this.p.y),this.realrad,0,2*Math.PI,false);
-        ctx.fillStyle="#000";
-        ctx.fill();
+        drawCircle(ctx,this.close.x,this.close.y,1,"#fff");
         
+        // draw circle
+        drawLine(ctx,this.p.x,this.p.y,this.p.x+this.radius,this.p.y,"#333");
+        drawCircle(ctx,this.p.x,this.p.y,this.radius,"#000");
         // draw forces
         var cur=this.forces.pop();
         while (cur){
